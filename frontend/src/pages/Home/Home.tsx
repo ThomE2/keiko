@@ -2,11 +2,6 @@ import styles from "./Home.module.css"
 import { Pokemon } from "../../components/Pokemon"
 import React from "react"
 
-interface Pokemon {
-  name: string
-  id: number
-}
-
 interface PokemonInfo {
   id: number
   name: string
@@ -14,7 +9,7 @@ interface PokemonInfo {
   weight: number
 }
 
-function filterPokemonsByName(pokemons: Pokemon[], filterName: string) {
+function filterPokemonsByName(pokemons: PokemonInfo[], filterName: string) {
   return pokemons.filter(({ name }) => name.includes(filterName))
 }
 
@@ -41,13 +36,14 @@ export const Home = () => {
   return (
     <div>
       <div className={styles.intro}>
-        <div>Bienvenue sur ton futur pokédex !</div>
-        <div>Tu vas pouvoir apprendre tout ce qu'il faut sur React et attraper des pokemons !</div>
+        <div>Pokedex</div>
       </div>
       <input className={styles.input} onChange={onInputChange} value={filterValue} />
-      {displayedList.map(({ name, id }) => {
-        return <Pokemon name={name} id={id} key={id} />
-      })}
+      <div className={styles.pokemonList}>
+        {displayedList.map(({ name, id, height, weight }) => {
+          return <Pokemon name={name} id={id} key={id} height={height} weight={weight} />
+        })}
+      </div>
     </div>
   )
 }
