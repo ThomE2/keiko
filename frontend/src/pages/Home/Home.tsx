@@ -7,20 +7,12 @@ interface Pokemon {
   id: number
 }
 
-const pokemonList: Pokemon[] = [
-  {
-    name: "Bulbizarre",
-    id: 1,
-  },
-  {
-    name: "Herbizarre",
-    id: 2,
-  },
-  {
-    name: "Florizarre",
-    id: 3,
-  },
-]
+interface PokemonInfo {
+  id: number
+  name: string
+  height: number
+  weight: number
+}
 
 function filterPokemonsByName(pokemons: Pokemon[], filterName: string) {
   return pokemons.filter(({ name }) => name.includes(filterName))
@@ -28,9 +20,20 @@ function filterPokemonsByName(pokemons: Pokemon[], filterName: string) {
 
 export const Home = () => {
   const [filterValue, setFilterValue] = React.useState("")
+  const [pokemonList, updatePokemonList] = React.useState<PokemonInfo[]>([])
+
+  React.useEffect(() => {
+    fetchPokemon().then(pokemonData => updatePokemonList(pokemonData))
+  }, [])
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterValue(event.target.value)
+  }
+
+  function fetchPokemon() {
+    return fetch("http://localhost:8000/pokemons", { headers: { accept: "application/json" } }).then(response =>
+      response.json(),
+    )
   }
 
   const displayedList = filterPokemonsByName(pokemonList, filterValue)
