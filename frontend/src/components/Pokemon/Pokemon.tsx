@@ -1,15 +1,28 @@
+import { Animate } from "../Animate"
+import styles from "./Pokemon.module.css"
+
 interface Props {
   name: string
-  id: string
+  id: number
+  key: number
+  height: number
+  weight: number
 }
 
-export const Pokemon = ({ name, id }: Props) => {
+const PokemonComponent = ({ name, id, height, weight }: Props) => {
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+  const link = `/pokemon/${id}`
   return (
-    <div>
-      <img src={imgUrl}></img>
-      <p>Nom : {name}</p>
-      <p>Numéro : {id}</p>
+    <div className={styles.pokemonCard}>
+      <a className={styles.pokemonCardLink} href={link}>
+        <p>{name[0].toUpperCase() + name.substring(1)}</p>
+        <img src={imgUrl}></img>
+        <p>Number: {id}</p>
+        <p>Height: {height * 10} cm</p>
+        <p>Weight: {weight / 10} kg</p>
+      </a>
     </div>
   )
 }
+
+export const Pokemon = Animate<Props>("tada")(PokemonComponent)
