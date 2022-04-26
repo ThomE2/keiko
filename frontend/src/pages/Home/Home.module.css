@@ -14,7 +14,33 @@
 }
 
 .pokemonList {
+  justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.previousLink {
+  width: 20px;
+  height: 20px;
+  color: black;
+  border-bottom: 6px solid;
+  border-left: 6px solid;
+  transform: rotate(45deg);
+}
+
+.nextLink {
+  width: 20px;
+  height: 20px;
+  color: black;
+  border-bottom: 6px solid;
+  border-right: 6px solid;
+  transform: rotate(-45deg);
 }
