@@ -1,6 +1,7 @@
 interface Props {
   name: string
-  id: string
+  id: number
+  key: number
 }
 
 export const Pokemon = ({ name, id }: Props) => {
