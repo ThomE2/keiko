@@ -1,3 +1,4 @@
+import { Animate } from "../Animate"
 import styles from "./Pokemon.module.css"
 
 interface Props {
@@ -8,16 +9,20 @@ interface Props {
   weight: number
 }
 
-export const Pokemon = ({ name, id, height, weight }: Props) => {
+const PokemonComponent = ({ name, id, height, weight }: Props) => {
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
   const link = `/pokemon/${id}`
   return (
-    <a className={styles.pokemonCard} href={link}>
-      <p>{name[0].toUpperCase() + name.substring(1)}</p>
-      <img src={imgUrl}></img>
-      <p>Number: {id}</p>
-      <p>Height: {height * 10} cm</p>
-      <p>Weight: {weight / 10} kg</p>
-    </a>
+    <div className={styles.pokemonCard}>
+      <a className={styles.pokemonCardLink} href={link}>
+        <p>{name[0].toUpperCase() + name.substring(1)}</p>
+        <img src={imgUrl}></img>
+        <p>Number: {id}</p>
+        <p>Height: {height * 10} cm</p>
+        <p>Weight: {weight / 10} kg</p>
+      </a>
+    </div>
   )
 }
+
+export const Pokemon = Animate<Props>("tada")(PokemonComponent)

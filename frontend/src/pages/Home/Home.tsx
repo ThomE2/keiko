@@ -24,9 +24,9 @@ export const Home = () => {
   React.useEffect(() => {
     fetchPokemon()
       .then(pokemonData => {
+        updatePokemonList(pokemonData)
         setLoading(false)
         setSuccess(true)
-        updatePokemonList(pokemonData)
       })
       .catch(() => {
         setLoading(false)
