@@ -10,13 +10,14 @@ interface Props {
 
 export const Pokemon = ({ name, id, height, weight }: Props) => {
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+  const link = `/pokemon/${id}`
   return (
-    <div className={styles.pokemonCard}>
+    <a className={styles.pokemonCard} href={link}>
       <p>{name[0].toUpperCase() + name.substring(1)}</p>
       <img src={imgUrl}></img>
       <p>Number: {id}</p>
       <p>Height: {height * 10} cm</p>
       <p>Weight: {weight / 10} kg</p>
-    </div>
+    </a>
   )
 }

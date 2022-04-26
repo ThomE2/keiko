@@ -1,6 +1,7 @@
 .pokemonCard {
   border: 5px solid;
   border-style: double;
+  color: black;
   margin: 5px;
   padding: 5px;
   width: 250px;
